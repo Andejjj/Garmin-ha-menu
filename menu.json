@@ -27,6 +27,42 @@
           }
         },
         {
+          "entity": "light.master_bedroom_downlights",
+          "name": "5%",
+          "type": "tap",
+          "tap_action": {
+            "action": "light.turn_on",
+            "data": {
+              "brightness_pct": 5,
+              "transition": 1
+            }
+          }
+        },
+        {
+          "entity": "light.master_bedroom_downlights",
+          "name": "20%",
+          "type": "tap",
+          "tap_action": {
+            "action": "light.turn_on",
+            "data": {
+              "brightness_pct": 20,
+              "transition": 1
+            }
+          }
+        },
+        {
+          "entity": "light.master_bedroom_downlights",
+          "name": "60%",
+          "type": "tap",
+          "tap_action": {
+            "action": "light.turn_on",
+            "data": {
+              "brightness_pct": 60,
+              "transition": 1
+            }
+          }
+        },
+        {
           "entity": "scene.master_bedroom_tv_bedtime",
           "name": "TV / Bedtime",
           "type": "tap",
@@ -38,6 +74,14 @@
           "entity": "input_boolean.auto_bedroom_lighting",
           "name": "Automatic Lighting",
           "type": "toggle"
+        },
+        {
+          "entity": "light.master_bedroom_downlights",
+          "name": "All Off",
+          "type": "tap",
+          "tap_action": {
+            "action": "light.turn_off"
+          }
         }
       ]
     },
