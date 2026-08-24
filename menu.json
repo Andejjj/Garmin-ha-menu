@@ -3,9 +3,70 @@
   "title": "Home",
   "items": [
     {
-      "name": "Garmin Test",
-      "type": "info",
-      "content": "Menu loaded successfully"
+      "name": "Master Bedroom",
+      "title": "Master Bedroom",
+      "type": "group",
+      "items": [
+        {
+          "name": "Brightness",
+          "content": "{% if is_state('light.master_bedroom_downlights','off') %}Off{% else %}{{ ((state_attr('light.master_bedroom_downlights','brightness') | int(0) / 255) * 100) | round(0) | int }}%{% endif %}",
+          "type": "numeric",
+          "entity": "light.master_bedroom_downlights",
+          "tap_action": {
+            "action": "light.turn_on",
+            "data": {
+              "transition": 1
+            },
+            "picker": {
+              "step": 5,
+              "min": 0,
+              "max": 255,
+              "attribute": "brightness",
+              "data_attribute": "brightness"
+            }
+          }
+        },
+        {
+          "entity": "scene.master_bedroom_tv_bedtime",
+          "name": "TV / Bedtime",
+          "type": "tap",
+          "tap_action": {
+            "action": "scene.turn_on"
+          }
+        },
+        {
+          "entity": "input_boolean.auto_bedroom_lighting",
+          "name": "Automatic Lighting",
+          "type": "toggle"
+        }
+      ]
+    },
+    {
+      "name": "Home Status",
+      "title": "Home Status",
+      "type": "group",
+      "items": [
+        {
+          "name": "Dudley",
+          "type": "info",
+          "content": "{% set p = states('sensor.living_room_smart_presence_sensor_dudley_presence') | float(1) %}{% if p > 1 %}Detected now{% else %}Last activity {{ as_timestamp(states.sensor.living_room_smart_presence_sensor_dudley_presence.last_changed) | timestamp_custom('%H:%M', true) }}{% endif %}"
+        },
+        {
+          "name": "Washing Machine",
+          "type": "info",
+          "content": "{{ states('sensor.washing_machine_display') }}"
+        },
+        {
+          "name": "Dryer",
+          "type": "info",
+          "content": "{{ states('sensor.dryer_display') }}"
+        },
+        {
+          "name": "Dishwasher",
+          "type": "info",
+          "content": "{{ states('sensor.dishwasher_display') }}"
+        }
+      ]
     }
   ]
 }
